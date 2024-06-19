@@ -1,0 +1,1 @@
+# Lavanderia_automatizada
