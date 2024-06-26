@@ -39,6 +39,7 @@
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descripción</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha y Hora</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
                 </tr>
             </thead>
             <tbody id="categoriaTableBody" class="bg-white divide-y divide-gray-200">
@@ -46,7 +47,6 @@
             </tbody>
         </table>
     </div>
-
     <script>
         document.getElementById('categoriaForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -83,9 +83,34 @@
                     const now = new Date();
                     fechaHoraCell.textContent = now.toLocaleString();
 
+                    const accionesCell = document.createElement('td');
+                    accionesCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-900');
+                    
+                    const modificarButton = document.createElement('button');
+                    modificarButton.textContent = 'Modificar';
+                    modificarButton.classList.add('bg-blue-600', 'text-white', 'py-1', 'px-3', 'rounded-md', 'hover:bg-blue-700', 'cursor-pointer', 'mr-2');
+                    modificarButton.addEventListener('click', function() {
+                        // Aquí puedes agregar la lógica para cargar los datos en el formulario para modificar
+                        document.getElementById('nombre').value = nombreCell.textContent.trim();
+                        document.getElementById('descripcion').value = descripcionCell.textContent.trim();
+                    });
+
+                    const eliminarButton = document.createElement('button');
+                    eliminarButton.textContent = 'Eliminar';
+                    eliminarButton.classList.add('bg-red-600', 'text-white', 'py-1', 'px-3', 'rounded-md', 'hover:bg-red-700', 'cursor-pointer');
+                    eliminarButton.addEventListener('click', function() {
+                        // Aquí puedes agregar la lógica para eliminar la categoría
+                        // Puedes usar fetch u otra técnica para enviar una solicitud de eliminación
+                        row.remove(); // Eliminar la fila de la interfaz (opcional)
+                    });
+
+                    accionesCell.appendChild(modificarButton);
+                    accionesCell.appendChild(eliminarButton);
+
                     row.appendChild(nombreCell);
                     row.appendChild(descripcionCell);
                     row.appendChild(fechaHoraCell);
+                    row.appendChild(accionesCell);
 
                     tableBody.appendChild(row);
 
@@ -107,3 +132,4 @@
     </script>
 </body>
 </html>
+
