@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./public/*.{html,js,php}","./public/js/*.{html,js}"], //llamando los estilos de la carpeta js
+  content: ["./public/**/*.{html,js,php}"],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+  require('@tailwindcss/forms'),],
 }
-
