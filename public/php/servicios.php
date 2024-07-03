@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para obtener todos los servicios
-$sql = "SELECT id, nombre, descripcion, fecha_hora, precio FROM servicios";
+$sql = "SELECT id, nombre, descripcion, precio, imagen FROM servicios";
 $result = $conn->query($sql);
 
 // Mostrar resultados en una tabla
@@ -24,8 +24,13 @@ if ($result->num_rows > 0) {
     echo "<td class='py-2 px-4'>" . $row["id"] . "</td>";
     echo "<td class='py-2 px-4'>" . $row["nombre"] . "</td>";
     echo "<td class='py-2 px-4'>" . $row["descripcion"] . "</td>";
-    echo "<td class='py-2 px-4'>" . $row["fecha_hora"] . "</td>";
     echo "<td class='py-2 px-4'>" . $row["precio"] . "</td>";
+    // Mostrar la imagen si está definida
+    if (!empty($row["imagen"])) {
+      echo "<td class='py-2 px-4'><img src='../" . htmlspecialchars($row["imagen"]) . "' class='max-w-xs'></td>";
+    } else {
+      echo "<td class='py-2 px-4'>-</td>";
+    }
     echo "</tr>";
   }
 } else {

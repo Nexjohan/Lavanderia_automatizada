@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="container mx-auto py-12">
                 <div class="bg-white rounded-lg shadow-lg p-6 mx-auto max-w-3xl">
                     <h1 class="text-2xl font-bold mb-6 text-center">Modificar Categoría</h1>
-                    <form action="actualizar_categoria.php" method="POST">
+                    <form action="actualizar_categoria.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="id" value="' . htmlspecialchars($id) . '">
                         <div class="mb-4">
                             <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
@@ -66,6 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2">Descripción:</label>
                             <textarea name="descripcion" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>' . htmlspecialchars($descripcion) . '</textarea>
                         </div>
+                        <div class="mb-4">
+                            <label for="imagen" class="block text-gray-700 text-sm font-bold mb-2">Imagen:</label>
+                            <input type="file" name="imagen" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Actualizar</button>
                     </form>
                 </div>
@@ -73,17 +77,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <script>
                 // Función para mostrar el modal de éxito y redirigir después de 2 segundos
                 function showSuccessModal() {
-                    alert("Categoría actualizada con éxito");
+                    var modal = document.getElementById("myModal");
+                    modal.style.display = "block";
                     setTimeout(function() {
-                        window.location.href = "visualizar_categoria.php";
-                    }, 2000);
+                        window.location.href = "visualizar_categorias.php";
+                    }, 2000); // Redirige después de 2 segundos (2000 milisegundos)
                 }
 
                 // Verificar si se debe mostrar el modal de éxito
-                if (window.location.search.includes("success=true")) {
-                    showSuccessModal();
-                }
+                window.onload = function() {
+                    var urlParams = new URLSearchParams(window.location.search);
+                    if (urlParams.has("success") && urlParams.get("success") === "true") {
+                        showSuccessModal();
+                    }
+                };
             </script>
+            <!-- Modal de Confirmación -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <h2>¡Categoría modificada con éxito!</h2>
+                    <p>Redireccionando a Visualizar Categorías...</p>
+                </div>
+            </div>
+            <!-- Estilos para el modal -->
+            <style>
+                .modal {
+                    display: none;
+                    position: fixed;
+                    z-index: 1000;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    overflow: auto;
+                    background-color: rgba(0, 0, 0, 0.5);
+                }
+                .modal-content {
+                    background-color: #fefefe;
+                    margin: 15% auto;
+                    padding: 20px;
+                    border: 1px solid #888;
+                    width: 80%;
+                    max-width: 600px;
+                    text-align: center;
+                }
+                .modal-content h2 {
+                    margin-bottom: 20px;
+                }
+            </style>
         </body>
         </html>
         ';

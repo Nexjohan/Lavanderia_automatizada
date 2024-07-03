@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +11,6 @@
         }
     </style>
 </head>
-
 <body class="bg-celeste-pastel">
     <header class="bg-blue-600 text-white py-4">
         <div class="container mx-auto flex justify-between items-center">
@@ -47,7 +45,7 @@
                     }
 
                     // Consulta SQL para obtener categorías
-                    $sql = "SELECT id, nombre, descripcion, fecha_hora FROM categorias";
+                    $sql = "SELECT id, nombre, descripcion, imagen FROM categorias";
                     $result = $conn->query($sql);
 
                     // Iterar sobre los resultados de la consulta
@@ -56,20 +54,20 @@
                             echo '
                             <div class="bg-gray-200 rounded-lg p-4 hover:bg-gray-300">
                                 <a href="servicios_categoria.php?id=' . htmlspecialchars($row['id']) . '" class="text-xl font-bold mb-2 block">' . htmlspecialchars($row['nombre']) . '</a>
+                                <img src="' . htmlspecialchars($row['imagen']) . '" alt="' . htmlspecialchars($row['nombre']) . '" class="w-full h-48 object-cover rounded-md mb-2">
                                 <p class="text-gray-700">' . htmlspecialchars($row['descripcion']) . '</p>
-                                <p class="text-gray-500 text-sm">Fecha y hora: ' . htmlspecialchars($row['fecha_hora']) . '</p>
                                 
-                                <!-- Botón Modificar -->
-                                <form action="modificar_categoria.php" method="POST" class="mt-2">
-                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
-                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Modificar</button>
-                                </form>
-                                
-                                <!-- Botón Eliminar -->
-                                <form action="eliminar_categoria.php" method="POST" onsubmit="return confirmDeletion(event, ' . htmlspecialchars($row['id']) . ');" class="mt-2">
-                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
-                                    <button type="submit" class="bg-red-600 text-white font-bold py-2 px-4 rounded">Eliminar</button>
-                                </form>
+                                <!-- Botones Modificar y Eliminar -->
+                                <div class="flex justify-between mt-2">
+                                    <form action="modificar_categoria.php" method="POST">
+                                        <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
+                                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">Modificar</button>
+                                    </form>
+                                    <form action="eliminar_categoria.php" method="POST" onsubmit="return confirmDeletion(event, ' . htmlspecialchars($row['id']) . ');">
+                                        <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
+                                        <button type="submit" class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-3 rounded">Eliminar</button>
+                                    </form>
+                                </div>
                             </div>
                             ';
                         }
@@ -107,5 +105,4 @@
         }
     </script>
 </body>
-
 </html>
