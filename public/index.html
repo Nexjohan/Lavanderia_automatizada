@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +7,25 @@
     <!-- Incluir Tailwind CSS -->
     <link href="./css/tailwind.css" rel="stylesheet">
 </head>
+<body class="bg-celeste-pastel">
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../index.html" class="text-xl font-bold hover:text-gray-200">Menú Principal</a>
+            <nav class="space-x-4">
+                <a href="./php/registro_de_usuarios.php" class= "text-xl font-bold hover:text-gray-200">Registrar</a>
+                <a href="./php/login.php" class="text-xl font-bold hover:text-gray-200">Iniciar Sesión</a>
+            </nav>
+        </div>
+    </header>
+    <style>
+        .bg-celeste-pastel {
+            background-color: #a0d6e4;
+        }
+    </style>
 
-<body class="bg-gray-100">
-    <img src="./img/fondo1.jfif" class="fixed inset-0 w-screen h-screen object-cover z-0" alt="Background Image">
     <div class="relative bg-gray-100 bg-opacity-0 py-12">
         <div class="container mx-auto py-12">
-            <div class="bg-white bg-opacity-+ rounded-lg shadow-lg p-6 mx-auto max-w-md">
+            <div class="bg-white rounded-lg shadow-lg p-6 mx-auto max-w-md">
                 <h1 class="text-2xl font-bold mb-6 text-center">Lavandería Automatizada</h1>
                 <div class="grid grid-cols-2 gap-4">
                     <!-- Botón para página de categorías -->
@@ -22,7 +34,7 @@
                     </a>
                     <!-- Botón para página de contactos -->
                     <a href="./php/visualizar_categorias.php" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg text-center block">
-                        Visualizar categorias
+                        Visualizar categorías
                     </a>
                     <!-- Botón para página de Pedidos -->
                     <a href="./php/pedido_servicio.php" class="bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-lg text-center block">
@@ -37,5 +49,5 @@
         </div>
     </div>
 </body>
-
 </html>
+
