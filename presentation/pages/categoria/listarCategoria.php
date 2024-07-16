@@ -28,8 +28,7 @@
                         <th class="py-2 px-6 text-left">ID</th>
                         <th class="py-2 px-6 text-left ">Nombre</th>
                         <th class="py-2 px-6 text-left ">Descripcion</th>
-
-
+                        
                         <th class="py-2 px-6 text-left">Acciones</th>
                     </tr>
                 </thead>

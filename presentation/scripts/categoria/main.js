@@ -100,9 +100,10 @@ async function getCategorias() {
   
   //Show Photo
   
-  async function showUserPhotos(imagen) {
+  async function showUserPhotos(imagen_categoria) {
     
-    const imageUrl ="../../../businessLogic/"+imagen;
+    const imageUrl ="../../../bussineslogic/"+imagen_categoria;
+    console.log(imageUrl)
   
     const newWindow = window.open('', '_blank', 'width=600,height=600');
     newWindow.document.write(`
