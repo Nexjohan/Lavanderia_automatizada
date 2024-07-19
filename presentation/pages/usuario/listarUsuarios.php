@@ -16,8 +16,8 @@
     <div class="container mx-auto max-w-3xl py-8">
         <!-- Encabezado -->
         <div class="flex items-center justify-between mb-4">
-            <h1 class="text-3xl font-bold text-gray-800">Gestión de Categorias</h1>
-            <a href="addCategoria.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Crear Categoria</a>
+            <h1 class="text-3xl font-bold text-gray-800">Gestión de Usuarios</h1>
+            <a href="addUsuario.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Crear Usuarios</a>
         </div>
 
         <!-- Tabla de Usuarios -->
@@ -27,7 +27,9 @@
                     <tr>
                         <th class="py-2 px-6 text-left">ID</th>
                         <th class="py-2 px-6 text-left ">Nombre</th>
-                        <th class="py-2 px-6 text-left ">Descripcion</th>
+                        <th class="py-2 px-6 text-left ">correo</th>
+                        <th class="py-2 px-6 text-left ">password</th>
+                        <th class="py-2 px-6 text-left ">rol</th>
                         
                         <th class="py-2 px-6 text-left">Acciones</th>
                     </tr>
@@ -40,6 +42,6 @@
         </div>
     </div>
 
-    <script src="../../scripts/categoria/main.js"></script>
+    <script src="../../scripts/usuario/main.js"></script>
 </body>
 </html>

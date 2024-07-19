@@ -76,9 +76,9 @@ class Usuario
     public function registrarUsuario(): bool
     {
         try {
-            $sql = "INSERT INTO usuarios (id, nombre, correo, password, rol) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO usuarios (nombre, correo, password, rol) VALUES (?, ?, ?, ?)";
             $stmt = $this->connectionDB->prepare($sql);
-            $stmt->execute(array($this->getId(), $this->getNombre(), $this->getCorreo(), $this->getPassword(), $this->getRol()));
+            $stmt->execute(array($this->getNombre(), $this->getCorreo(), $this->getPassword(), $this->getRol()));
             $count = $stmt->rowCount();
             return $this->affectedColumns($count);
         } catch (PDOException $e) {

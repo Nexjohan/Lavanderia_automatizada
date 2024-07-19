@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
 // Añadir usuario
 else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_POST['id'];
+   // $id = $_POST['id'];
     $nombre = $_POST['nombre'];
     $correo = $_POST['correo'];
     $password = $_POST['password'];
@@ -25,14 +25,14 @@ else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $objConexion = new ConexionDB();
     $objUser = new Usuario($objConexion);
 
-    $objUser->setId($id);
+    //$objUser->setId($id);
     $objUser->setNombre($nombre);
     $objUser->setCorreo($correo);
     $objUser->setPassword($password);
     $objUser->setRol($rol);
     $objUser->registrarUsuario();
-    $response = array('success' => true, 'message' => 'Usuario agregado correctamente');
-    echo json_encode($response);
+    //$response = array('success' => true, 'message' => 'Usuario agregado correctamente');
+    //echo json_encode($response);
     exit;
 }
 
@@ -48,7 +48,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // Editar usuario
 else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     $data = json_decode(file_get_contents('php://input'), true);
-    $id = intval($data['id']);
+    $id = ($data['id']);
     $nombre = $data['nombre'];
     $correo = $data['correo'];
     $password = $data['password'];
