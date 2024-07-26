@@ -141,5 +141,20 @@ class Usuario
         }
         return $msm;
     }
+
+    public function login(string $correo, string $password)
+    {
+        try {
+            $sql = "SELECT * FROM usuarios WHERE correo = ? AND password = ?";
+            $stmt = $this->connectionDB->prepare($sql);
+            $stmt->execute(array($correo, $password));
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $user;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    
 }
 ?>

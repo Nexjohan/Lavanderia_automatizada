@@ -7,7 +7,7 @@
         <a href="../administrador/OptionsList.php" class="text-white hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
             <i class="fas fa-home mr-1"></i> Página Principal
         </a>
-        <a href="#" class="text-white hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
+        <a href="../usuario/login.php" class="text-white hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium">
             <i class="fas fa-users mr-1"></i> Cerrar Sesión
         </a>
         <!-- Agrega más enlaces para otras secciones según necesites -->

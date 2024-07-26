@@ -16,22 +16,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
 // Añadir servicio
 else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_POST['id'];
+
+    $directorio = "imagenes/";
+    $nombreArchivo = $_FILES['imagen']['name'];
+    $rutaTemporal = $_FILES['imagen']['tmp_name'];
+
+    $rutaDefinitiva = $directorio . $nombreArchivo;
+
+    if (!file_exists($directorio)) {
+        mkdir($directorio, 0777);
+    }
+
+    move_uploaded_file($rutaTemporal, $rutaDefinitiva);
+
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
     $categoria_id = $_POST['categoria_id'];
-    $fecha_hora = $_POST['fecha_hora'];
     $precio = $_POST['precio'];
-    $imagen = $_POST['imagen'];
+    $imagen = $rutaDefinitiva; // Aquí deberías manejar la lógica de subir y guardar la imagen si es necesario
 
     $objConexion = new ConexionDB();
     $objServicio = new Servicio($objConexion);
 
-    $objServicio->setId($id);
     $objServicio->setNombre($nombre);
     $objServicio->setDescripcion($descripcion);
     $objServicio->setCategoriaId($categoria_id);
-    $objServicio->setFechaHora($fecha_hora);
     $objServicio->setPrecio($precio);
     $objServicio->setImagen($imagen);
     $objServicio->registrarServicio();
@@ -55,9 +64,6 @@ else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     $id = intval($data['id']);
     $nombre = $data['nombre'];
     $descripcion = $data['descripcion'];
-    $categoria_id = $data['categoria_id'];
-    $fecha_hora = $data['fecha_hora'];
-    $precio = $data['precio'];
     $imagen = $data['imagen'];
 
     $objConexion = new ConexionDB();
@@ -66,10 +72,8 @@ else if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     $objServicio->setId($id);
     $objServicio->setNombre($nombre);
     $objServicio->setDescripcion($descripcion);
-    $objServicio->setCategoriaId($categoria_id);
-    $objServicio->setFechaHora($fecha_hora);
-    $objServicio->setPrecio($precio);
     $objServicio->setImagen($imagen);
+
     $objServicio->editarServicio();
     $response = array('success' => true, 'message' => 'Servicio actualizado correctamente');
     echo json_encode($response);

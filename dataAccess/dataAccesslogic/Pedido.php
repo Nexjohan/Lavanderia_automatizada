@@ -3,15 +3,13 @@
 
 include ('../dataAccess/conexion/Conexion.php');
 
-class Servicio
+class Pedido
 {
     #atributos
     private  $id;
     private  $nombre;
     private  $descripcion;
     private  $categoria_id;
-    private  $precio;
-    private  $imagen;
 
     private $connectionDB;
 
@@ -61,35 +59,14 @@ class Servicio
     {
         return $this->categoria_id;
     }
-
-    public function setPrecio(float $precio): void
-    {
-        $this->precio = $precio;
-    }
-
-    public function getPrecio(): float
-    {
-        return $this->precio;
-    }
-
-    public function setImagen(string $imagen): void
-    {
-        $this->imagen = $imagen;
-    }
-
-    public function getImagen(): string
-    {
-        return $this->imagen;
-    }
-
     #metodos
-    #añadir servicio
-    public function registrarServicio(): bool
+    #añadir pedido
+    public function registrarPedido(): bool
     {
         try {
-            $sql = "INSERT INTO servicios (nombre, descripcion, categoria_id, precio, imagen) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO pedidos (nombre, descripcion, categoria_id,) VALUES (?, ?, ?)";
             $stmt = $this->connectionDB->prepare($sql);
-            $stmt->execute([$this->getNombre(), $this->getDescripcion(), $this->getCategoriaId(), $this->getPrecio(), $this->getImagen()]);
+            $stmt->execute([$this->getNombre(), $this->getDescripcion(), $this->getCategoriaId()]);
             $count = $stmt->rowCount();
             return $this->affectedColumns($count);
         } catch (PDOException $e) {
@@ -98,11 +75,11 @@ class Servicio
         }
     }
 
-    #listar servicios
-    public function listarServicio()
+    #listar pedidos
+    public function listarPedido()
     {
         try {
-            $sql = "SELECT * FROM servicios";
+            $sql = "SELECT * FROM pedidos";
             $stmt = $this->connectionDB->prepare($sql);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -114,11 +91,11 @@ class Servicio
         return [];
     }
 
-    #borrar servicio
-    public function eliminarServicio(): bool
+    #borrar pedido
+    public function eliminarPedido(): bool
     {
         try {
-            $sql = "DELETE FROM servicios WHERE id=?";
+            $sql = "DELETE FROM pedidos WHERE id=?";
             $stmt = $this->connectionDB->prepare($sql);
             $stmt->execute(array($this->getId()));
             $count = $stmt->rowCount();
@@ -129,12 +106,12 @@ class Servicio
         }
     }
 
-    public function editarServicio()
+    public function editarPedido()
     {
         try {
-            $sql = "UPDATE servicios SET nombre = ?, descripcion = ?, imagen = ? WHERE id = ?";
+            $sql = "UPDATE pedidos SET nombre = ?, descripcion = ?,  WHERE id = ?";
             $stmt = $this->connectionDB->prepare($sql);
-            $stmt->execute(array($this->getNombre(), $this->getDescripcion(), $this->getImagen(), $this->getId()));
+            $stmt->execute(array($this->getNombre(), $this->getDescripcion(), , $this->getId()));
             $count = $stmt->rowCount();
             return $this->affectedColumns($count);
         } catch (PDOException $e) {
